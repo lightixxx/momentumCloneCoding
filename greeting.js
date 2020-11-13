@@ -11,6 +11,7 @@ function saveName(text) {
 
 function handleSubmit(event) {
   event.preventDefault();
+
   const currentValue = input.value;
   paintGreeting(currentValue);
   saveName(currentValue);
@@ -24,20 +25,18 @@ function askForName() {
 function paintGreeting(text) {
   form.classList.remove(SHOWING_CN);
   greeting.classList.add(SHOWING_CN);
-  greeting.innerText = `Hello! ${text}`;
+  greeting.innerText = `Hello, ${text}!`;
 }
 
 function loadName() {
-  const currentUser = localStorage.getItem(USER_LS);
+  const userName = localStorage.getItem(USER_LS);
 
-  if(currentUser === null) {
-    // 사용자 이름이 없다면
+  if(userName === null) {
     askForName();
   } else {
-    // 사용자의 이름이 있다면
-    paintGreeting(currentUser);
+    paintGreeting(userName);
   }
-}      
+}
 
 function init() {
   loadName();
